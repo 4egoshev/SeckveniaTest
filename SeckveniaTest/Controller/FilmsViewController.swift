@@ -11,48 +11,21 @@ import SwiftyJSON
 
 class FilmsViewController: UITableViewController {
     
-    var filmArray = [Film]()
     var sectionArray = [Int]()
     var rowArray = [Array<Film>]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var tempArray = [Int]()
-        
-        //создать ParseManager и возвращать тьюпл
-        let path = Bundle.main.path(forResource: "Films", ofType: "json") as String!
-        let jsonData = NSData(contentsOfFile: path!) as NSData!
-        do {
-            let jsonDict = try JSON(data: jsonData as Data!)
-            let jsonArray = jsonDict["films"]
-            for (_, item) in jsonArray {
-                if let film = Film(json: item) {
-                    filmArray.append(film)
-                    tempArray.append(film.year)
-                }
-            }
-            for yaer in tempArray {
-                if !sectionArray.contains(yaer) {
-                    sectionArray.append(yaer)
-                }
-            }
-        } catch {
-            print(error)
-        }
-        
-        sectionArray.sort()
-        
-        for section in sectionArray {
-            var tempArray = filmArray.filter({ $0.year == section })
-            tempArray.sort(by: { $0.rating > $1.rating })
-            rowArray.append(tempArray)
-        }
-        //
+        setupContent()
+    }
+    
+    private func setupContent() {
+        sectionArray = ParseManager.sharedInstance.createArrays().sectionArray
+        rowArray = ParseManager.sharedInstance.createArrays().rowArray
     }
 
-    // MARK: - Table view data source
-
+    // MARK: - UITableViewDataSource
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionArray.count
     }
@@ -68,7 +41,7 @@ class FilmsViewController: UITableViewController {
         return cell
     }
     
-    // MARK: - Table view delegate
+    // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40

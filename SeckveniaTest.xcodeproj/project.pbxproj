@@ -15,6 +15,7 @@
 		23879214207BB997000B0E26 /* Films.json in Resources */ = {isa = PBXBuildFile; fileRef = 23879213207BB996000B0E26 /* Films.json */; };
 		23879216207BB9C8000B0E26 /* FilmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879215207BB9C8000B0E26 /* FilmsViewController.swift */; };
 		2387921A207BC179000B0E26 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879219207BC179000B0E26 /* Film.swift */; };
+		23FDAD7C207C034300F72140 /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FDAD7B207C034300F72140 /* ParseManager.swift */; };
 		9BB2A1279FC60130E468D830 /* Pods_SeckveniaTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21D8DEDED4A4BC1ABFFFA40 /* Pods_SeckveniaTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		23879215207BB9C8000B0E26 /* FilmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewController.swift; sourceTree = "<group>"; };
 		23879218207BBBF7000B0E26 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23879219207BC179000B0E26 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
+		23FDAD7B207C034300F72140 /* ParseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
 		B21D8DEDED4A4BC1ABFFFA40 /* Pods_SeckveniaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeckveniaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CACE8577E1B7A6813FABD6 /* Pods-SeckveniaTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeckveniaTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeckveniaTest/Pods-SeckveniaTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E4BDF972D2E4CDBAAF16D1BC /* Pods-SeckveniaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeckveniaTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeckveniaTest/Pods-SeckveniaTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,16 +71,49 @@
 			isa = PBXGroup;
 			children = (
 				23879201207BB878000B0E26 /* AppDelegate.swift */,
-				23879215207BB9C8000B0E26 /* FilmsViewController.swift */,
+				23FDAD7F207C11A400F72140 /* Controller */,
+				23FDAD7E207C119200F72140 /* Model */,
+				23FDAD7D207C118400F72140 /* Manager */,
+				23FDAD80207C11B500F72140 /* Support */,
+				2387920D207BB878000B0E26 /* Info.plist */,
+			);
+			path = SeckveniaTest;
+			sourceTree = "<group>";
+		};
+		23FDAD7D207C118400F72140 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				23FDAD7B207C034300F72140 /* ParseManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		23FDAD7E207C119200F72140 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				23879219207BC179000B0E26 /* Film.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		23FDAD7F207C11A400F72140 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				23879203207BB878000B0E26 /* ViewController.swift */,
+				23879215207BB9C8000B0E26 /* FilmsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		23FDAD80207C11B500F72140 /* Support */ = {
+			isa = PBXGroup;
+			children = (
 				23879205207BB878000B0E26 /* Main.storyboard */,
 				23879208207BB878000B0E26 /* Assets.xcassets */,
 				2387920A207BB878000B0E26 /* LaunchScreen.storyboard */,
 				23879213207BB996000B0E26 /* Films.json */,
-				2387920D207BB878000B0E26 /* Info.plist */,
 			);
-			path = SeckveniaTest;
+			path = Support;
 			sourceTree = "<group>";
 		};
 		2D9C4F590A1F082C317489CD /* Pods */ = {
@@ -230,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23879216207BB9C8000B0E26 /* FilmsViewController.swift in Sources */,
+				23FDAD7C207C034300F72140 /* ParseManager.swift in Sources */,
 				2387921A207BC179000B0E26 /* Film.swift in Sources */,
 				23879204207BB878000B0E26 /* ViewController.swift in Sources */,
 				23879202207BB878000B0E26 /* AppDelegate.swift in Sources */,
