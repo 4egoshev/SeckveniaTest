@@ -1,0 +1,6 @@
+framework module Pods_SeckveniaTest {
+  umbrella header "Pods-SeckveniaTest-umbrella.h"
+
+  export *
+  module * { export * }
+}
