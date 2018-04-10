@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2385AB2B207D0B690003E37C /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2385AB2A207D0B690003E37C /* HeaderView.xib */; };
 		2385AB2D207D0BF00003E37C /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2385AB2C207D0BF00003E37C /* HeaderView.swift */; };
+		2385AB31207D435B0003E37C /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2385AB30207D435B0003E37C /* DownloadManager.swift */; };
 		23879202207BB878000B0E26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879201207BB878000B0E26 /* AppDelegate.swift */; };
 		23879204207BB878000B0E26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879203207BB878000B0E26 /* ViewController.swift */; };
 		23879207207BB878000B0E26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23879205207BB878000B0E26 /* Main.storyboard */; };
@@ -26,6 +27,9 @@
 /* Begin PBXFileReference section */
 		2385AB2A207D0B690003E37C /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		2385AB2C207D0BF00003E37C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		2385AB30207D435B0003E37C /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		2385AB33207D440F0003E37C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2385AB35207D44370003E37C /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		238791FE207BB878000B0E26 /* SeckveniaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeckveniaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23879201207BB878000B0E26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23879203207BB878000B0E26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				23FDAD7B207C034300F72140 /* ParseManager.swift */,
+				2385AB30207D435B0003E37C /* DownloadManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -156,6 +161,8 @@
 		B53537497AE4CC3FFF8E24B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2385AB35207D44370003E37C /* SwiftyJSON.framework */,
+				2385AB33207D440F0003E37C /* Alamofire.framework */,
 				23879218207BBBF7000B0E26 /* SwiftyJSON.framework */,
 				B21D8DEDED4A4BC1ABFFFA40 /* Pods_SeckveniaTest.framework */,
 			);
@@ -243,10 +250,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SeckveniaTest/Pods-SeckveniaTest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +306,7 @@
 				23879216207BB9C8000B0E26 /* FilmsViewController.swift in Sources */,
 				23FDAD7C207C034300F72140 /* ParseManager.swift in Sources */,
 				2387921A207BC179000B0E26 /* Film.swift in Sources */,
+				2385AB31207D435B0003E37C /* DownloadManager.swift in Sources */,
 				23FDAD86207CC2DA00F72140 /* FilmCell.swift in Sources */,
 				23879204207BB878000B0E26 /* ViewController.swift in Sources */,
 				23879202207BB878000B0E26 /* AppDelegate.swift in Sources */,

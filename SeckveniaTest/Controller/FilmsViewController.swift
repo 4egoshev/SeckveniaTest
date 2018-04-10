@@ -49,7 +49,11 @@ class FilmsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "film_cell", for: indexPath) as! FilmCell
-        cell.configCell(from: rowArray, with: indexPath)
+        let array = rowArray[indexPath.section]
+        DownloadManager.sharedInstance.dowloadImage(from: array[indexPath.row].imageURL) { (data) in
+            cell.setPoster(with: data)
+        }
+        cell.configCell(from: array, with: indexPath)
         return cell
     }
     

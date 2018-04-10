@@ -12,6 +12,7 @@ class FilmCell: UITableViewCell {
     
     @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var localizedNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -28,12 +29,15 @@ class FilmCell: UITableViewCell {
     func changeContainerViewColor() {
         containerView.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1)
     }
+    func setPoster(with data: Data?) {
+        guard let imageData = data else { return }
+        posterImage.image = UIImage(data: imageData)
+    }
     
-    func configCell(from array: [Array<Film>], with indexPath: IndexPath) {
-        let rowArray = array[indexPath.section]
-        let localizedName = rowArray[indexPath.row].localizedName
-        let name = rowArray[indexPath.row].name
-        let rating = rowArray[indexPath.row].rating
+    func configCell(from array: [Film], with indexPath: IndexPath) {
+        let localizedName = array[indexPath.row].localizedName
+        let name = array[indexPath.row].name
+        let rating = array[indexPath.row].rating
         
         config(localizedName: localizedName, name: name)
         config(rating: rating)
@@ -62,7 +66,7 @@ class FilmCell: UITableViewCell {
         ratingLabel.textColor = colorForIndex(index: rating)
     }
     
-    func estimateFrame(for text: String, with textSize: CGFloat) -> CGRect {
+    private func estimateFrame(for text: String, with textSize: CGFloat) -> CGRect {
         let size = CGSize(width: bounds.width/2, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size,
