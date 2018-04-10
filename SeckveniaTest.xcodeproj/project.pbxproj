@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2385AB2B207D0B690003E37C /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2385AB2A207D0B690003E37C /* HeaderView.xib */; };
+		2385AB2D207D0BF00003E37C /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2385AB2C207D0BF00003E37C /* HeaderView.swift */; };
 		23879202207BB878000B0E26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879201207BB878000B0E26 /* AppDelegate.swift */; };
 		23879204207BB878000B0E26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879203207BB878000B0E26 /* ViewController.swift */; };
 		23879207207BB878000B0E26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23879205207BB878000B0E26 /* Main.storyboard */; };
@@ -16,10 +18,14 @@
 		23879216207BB9C8000B0E26 /* FilmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879215207BB9C8000B0E26 /* FilmsViewController.swift */; };
 		2387921A207BC179000B0E26 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879219207BC179000B0E26 /* Film.swift */; };
 		23FDAD7C207C034300F72140 /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FDAD7B207C034300F72140 /* ParseManager.swift */; };
+		23FDAD84207CC11D00F72140 /* FilmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23FDAD83207CC11D00F72140 /* FilmCell.xib */; };
+		23FDAD86207CC2DA00F72140 /* FilmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FDAD85207CC2DA00F72140 /* FilmCell.swift */; };
 		9BB2A1279FC60130E468D830 /* Pods_SeckveniaTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21D8DEDED4A4BC1ABFFFA40 /* Pods_SeckveniaTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2385AB2A207D0B690003E37C /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		2385AB2C207D0BF00003E37C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		238791FE207BB878000B0E26 /* SeckveniaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeckveniaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23879201207BB878000B0E26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23879203207BB878000B0E26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +38,8 @@
 		23879218207BBBF7000B0E26 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23879219207BC179000B0E26 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		23FDAD7B207C034300F72140 /* ParseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
+		23FDAD83207CC11D00F72140 /* FilmCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilmCell.xib; sourceTree = "<group>"; };
+		23FDAD85207CC2DA00F72140 /* FilmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCell.swift; sourceTree = "<group>"; };
 		B21D8DEDED4A4BC1ABFFFA40 /* Pods_SeckveniaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeckveniaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CACE8577E1B7A6813FABD6 /* Pods-SeckveniaTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeckveniaTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeckveniaTest/Pods-SeckveniaTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E4BDF972D2E4CDBAAF16D1BC /* Pods-SeckveniaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeckveniaTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeckveniaTest/Pods-SeckveniaTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -49,6 +57,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2385AB2E207D0EEE0003E37C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2385AB2F207D0F030003E37C /* Cell */,
+				2385AB2A207D0B690003E37C /* HeaderView.xib */,
+				2385AB2C207D0BF00003E37C /* HeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2385AB2F207D0F030003E37C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				23FDAD83207CC11D00F72140 /* FilmCell.xib */,
+				23FDAD85207CC2DA00F72140 /* FilmCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		238791F5207BB877000B0E26 = {
 			isa = PBXGroup;
 			children = (
@@ -71,8 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				23879201207BB878000B0E26 /* AppDelegate.swift */,
-				23FDAD7F207C11A400F72140 /* Controller */,
 				23FDAD7E207C119200F72140 /* Model */,
+				2385AB2E207D0EEE0003E37C /* View */,
+				23FDAD7F207C11A400F72140 /* Controller */,
 				23FDAD7D207C118400F72140 /* Manager */,
 				23FDAD80207C11B500F72140 /* Support */,
 				2387920D207BB878000B0E26 /* Info.plist */,
@@ -196,8 +224,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23FDAD84207CC11D00F72140 /* FilmCell.xib in Resources */,
 				2387920C207BB878000B0E26 /* LaunchScreen.storyboard in Resources */,
 				23879214207BB997000B0E26 /* Films.json in Resources */,
+				2385AB2B207D0B690003E37C /* HeaderView.xib in Resources */,
 				23879209207BB878000B0E26 /* Assets.xcassets in Resources */,
 				23879207207BB878000B0E26 /* Main.storyboard in Resources */,
 			);
@@ -267,8 +297,10 @@
 				23879216207BB9C8000B0E26 /* FilmsViewController.swift in Sources */,
 				23FDAD7C207C034300F72140 /* ParseManager.swift in Sources */,
 				2387921A207BC179000B0E26 /* Film.swift in Sources */,
+				23FDAD86207CC2DA00F72140 /* FilmCell.swift in Sources */,
 				23879204207BB878000B0E26 /* ViewController.swift in Sources */,
 				23879202207BB878000B0E26 /* AppDelegate.swift in Sources */,
+				2385AB2D207D0BF00003E37C /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

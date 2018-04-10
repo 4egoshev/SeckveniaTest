@@ -16,12 +16,25 @@ class FilmsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         setupContent()
+        setupTableView()
+    }
+    
+    private func setupNavBar() {
+        navigationController?.navigationBar.barTintColor = UIColor.orange
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,
+                                                                   NSAttributedStringKey.font: UIFont.systemFont(ofSize: 21, weight: .bold)]
     }
     
     private func setupContent() {
         sectionArray = ParseManager.sharedInstance.createArrays().sectionArray
         rowArray = ParseManager.sharedInstance.createArrays().rowArray
+    }
+    
+    private func setupTableView() {
+        tableView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        tableView.register(UINib(nibName: "FilmCell", bundle: nil), forCellReuseIdentifier: "film_cell")
     }
 
     // MARK: - UITableViewDataSource
@@ -35,9 +48,8 @@ class FilmsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        let array = rowArray[indexPath.section]
-        cell.textLabel?.text = String(array[indexPath.row].name)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "film_cell", for: indexPath) as! FilmCell
+        cell.configCell(from: rowArray, with: indexPath)
         return cell
     }
     
@@ -48,18 +60,15 @@ class FilmsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView()
-        header.backgroundColor = UIColor.gray
-        let year = UILabel()
-        year.translatesAutoresizingMaskIntoConstraints = false
-        year.text = String(sectionArray[section])
-        header.addSubview(year)
-        
-        year.leftAnchor.constraint(equalTo: header.leftAnchor, constant: 8).isActive = true
-        year.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        year.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        year.centerYAnchor.constraint(equalTo: header.centerYAnchor).isActive = true
+        let header = Bundle.main.loadNibNamed("HeaderView", owner: self, options: nil)?.first as! HeaderView
+        header.config(with: sectionArray[section])
         return header
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! FilmCell
+        cell.selectionStyle = .none
+        cell.changeContainerViewColor()
     }
 
 }
