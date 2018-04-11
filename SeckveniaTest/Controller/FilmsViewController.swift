@@ -11,16 +11,27 @@ import SwiftyJSON
 
 class FilmsViewController: UITableViewController {
     
+    let downloadManager = DownloadManager.sharedInstance
+    
+    let cellIdentifier = "film_cell"
+    let segueIdentifier = "to_detail"
+    
     var sectionArray = [Int]()
     var rowArray = [Array<Film>]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        downloadData()
         setupNavBar()
-        setupContent()
         setupTableView()
     }
     
+    private func downloadData() {
+        downloadManager.downloadData {
+            self.setupContent()
+        }
+    }
+
     private func setupNavBar() {
         navigationController?.navigationBar.barTintColor = UIColor.orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,
@@ -28,13 +39,40 @@ class FilmsViewController: UITableViewController {
     }
     
     private func setupContent() {
-        sectionArray = ParseManager.sharedInstance.createArrays().sectionArray
-        rowArray = ParseManager.sharedInstance.createArrays().rowArray
+        let filmArray = DownloadManager.sharedInstance.getData()
+        filterArrays(from: filmArray)
+    }
+    
+    private func filterArrays(from films: [Film]) {
+        var years = [Int]()
+        for film in films {
+            years.append(film.year)
+        }
+        createYaerArray(from: years)
+        creteFilmArray(from: films, and: sectionArray)
+        tableView.reloadData()
+    }
+    
+    private func createYaerArray(from yaers: [Int]) {
+        for year in yaers {
+            if !sectionArray.contains(year) {
+                sectionArray.append(year)
+            }
+        }
+        sectionArray.sort()
+    }
+    
+    private func creteFilmArray(from films: [Film], and yearArray: [Int]) {
+        for year in yearArray {
+            var tempArray = films.filter({ $0.year == year })
+            tempArray.sort(by: { $0.rating > $1.rating })
+            rowArray.append(tempArray)
+        }
     }
     
     private func setupTableView() {
         tableView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        tableView.register(UINib(nibName: "FilmCell", bundle: nil), forCellReuseIdentifier: "film_cell")
+        tableView.register(UINib(nibName: "FilmCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
     }
 
     // MARK: - UITableViewDataSource
@@ -48,9 +86,9 @@ class FilmsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "film_cell", for: indexPath) as! FilmCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FilmCell
         let array = rowArray[indexPath.section]
-        DownloadManager.sharedInstance.dowloadImage(from: array[indexPath.row].imageURL) { (data) in
+        downloadManager.dowloadImage(from: array[indexPath.row].imageURL) { (data) in
             cell.setPoster(with: data)
         }
         cell.configCell(from: array, with: indexPath)
@@ -72,13 +110,13 @@ class FilmsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FilmCell
         cell.changeContainerViewColor(isSelested: true)
-        performSegue(withIdentifier: "to_detail", sender: indexPath)
+        performSegue(withIdentifier: segueIdentifier, sender: indexPath)
     }
     
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "to_detail" {
+        if segue.identifier == segueIdentifier {
             let detailViewController = segue.destination as! DetailViewController
             let indexPath = sender as! IndexPath
             let cell = tableView.cellForRow(at: indexPath) as!FilmCell

@@ -20,13 +20,14 @@
 		23879214207BB997000B0E26 /* Films.json in Resources */ = {isa = PBXBuildFile; fileRef = 23879213207BB996000B0E26 /* Films.json */; };
 		23879216207BB9C8000B0E26 /* FilmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879215207BB9C8000B0E26 /* FilmsViewController.swift */; };
 		2387921A207BC179000B0E26 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23879219207BC179000B0E26 /* Film.swift */; };
-		23FDAD7C207C034300F72140 /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FDAD7B207C034300F72140 /* ParseManager.swift */; };
 		23FDAD84207CC11D00F72140 /* FilmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23FDAD83207CC11D00F72140 /* FilmCell.xib */; };
 		23FDAD86207CC2DA00F72140 /* FilmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FDAD85207CC2DA00F72140 /* FilmCell.swift */; };
 		9BB2A1279FC60130E468D830 /* Pods_SeckveniaTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21D8DEDED4A4BC1ABFFFA40 /* Pods_SeckveniaTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2353E80D207DD8EB0034205D /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2353E80F207DD9100034205D /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2385AB2A207D0B690003E37C /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		2385AB2C207D0BF00003E37C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2385AB30207D435B0003E37C /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		23879215207BB9C8000B0E26 /* FilmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewController.swift; sourceTree = "<group>"; };
 		23879218207BBBF7000B0E26 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23879219207BC179000B0E26 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
-		23FDAD7B207C034300F72140 /* ParseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
 		23FDAD83207CC11D00F72140 /* FilmCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilmCell.xib; sourceTree = "<group>"; };
 		23FDAD85207CC2DA00F72140 /* FilmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCell.swift; sourceTree = "<group>"; };
 		B21D8DEDED4A4BC1ABFFFA40 /* Pods_SeckveniaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeckveniaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,7 +121,6 @@
 		23FDAD7D207C118400F72140 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				23FDAD7B207C034300F72140 /* ParseManager.swift */,
 				2385AB30207D435B0003E37C /* DownloadManager.swift */,
 			);
 			path = Manager;
@@ -167,6 +166,8 @@
 		B53537497AE4CC3FFF8E24B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2353E80F207DD9100034205D /* RealmSwift.framework */,
+				2353E80D207DD8EB0034205D /* RealmSwift.framework */,
 				2385AB35207D44370003E37C /* SwiftyJSON.framework */,
 				2385AB33207D440F0003E37C /* Alamofire.framework */,
 				23879218207BBBF7000B0E26 /* SwiftyJSON.framework */,
@@ -258,11 +259,15 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SeckveniaTest/Pods-SeckveniaTest-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,7 +316,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				23879216207BB9C8000B0E26 /* FilmsViewController.swift in Sources */,
-				23FDAD7C207C034300F72140 /* ParseManager.swift in Sources */,
 				2387921A207BC179000B0E26 /* Film.swift in Sources */,
 				2385AB3B207D70AB0003E37C /* DetailView.swift in Sources */,
 				2385AB31207D435B0003E37C /* DownloadManager.swift in Sources */,

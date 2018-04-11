@@ -88,10 +88,10 @@ class DetailView: UIView {
         }
     }
     
-    
+    /*
     //Need to fix
     func estimateConentSize() -> CGSize {
         return CGSize(width: bounds.width, height: descriptionText.frame.origin.y + estimateFrame(for: descriptionText.text, with: 14).height+4)
     }
-    
+    */
 }

@@ -7,5 +7,6 @@ target 'SeckveniaTest' do
 
   pod 'SwiftyJSON'
   pod 'Alamofire'
+  pod 'RealmSwift'
 
 end

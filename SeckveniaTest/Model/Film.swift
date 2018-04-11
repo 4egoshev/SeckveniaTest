@@ -6,17 +6,17 @@
 //  Copyright © 2018 Aleksandr Chegoshev. All rights reserved.
 //
 
-import UIKit
 import SwiftyJSON
+import RealmSwift
 
-class Film: NSObject {
+class Film: Object {
 
-    var localizedName = ""
-    var name = ""
-    var year = 0
-    var rating = 0.0
-    var imageURL = ""
-    var descriptionText = ""
+    @objc dynamic var localizedName = ""
+    @objc dynamic var name = ""
+    @objc dynamic var year = 0
+    @objc dynamic var rating = 0.0
+    @objc dynamic var imageURL = ""
+    @objc dynamic var descriptionText = ""
     
     convenience init? (json: JSON) {
         guard
@@ -36,6 +36,9 @@ class Film: NSObject {
         self.rating = rating
         self.imageURL = imageURL
         self.descriptionText = descriptionText
-        
+    }
+    
+    override static func primaryKey() -> String? {
+        return "name"
     }
 }
