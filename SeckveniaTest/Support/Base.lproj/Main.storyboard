@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="qCm-h2-YgQ" customClass="FilmCell" customModule="SeckveniaTest" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="film_cell" id="qCm-h2-YgQ" customClass="FilmCell" customModule="SeckveniaTest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qCm-h2-YgQ" id="siP-pR-3m2">
@@ -34,6 +34,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Фильмы" id="5ef-fV-OYs"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="to_detail" id="xSk-7A-RXB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fH-39-ua1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -55,20 +58,34 @@
             </objects>
             <point key="canvasLocation" x="-676" y="227"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SeckveniaTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DetailViewController" customModule="SeckveniaTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9XH-D7-mYv">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9XH-D7-mYv" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="0dH-Ks-2CE"/>
+                            <constraint firstItem="9XH-D7-mYv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="35x-BZ-Kq3"/>
+                            <constraint firstItem="9XH-D7-mYv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DTv-L8-Du4"/>
+                            <constraint firstItem="9XH-D7-mYv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QEz-Dk-ylc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="9XH-D7-mYv" id="jda-bg-mlr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="192"/>
+            <point key="canvasLocation" x="1071" y="226"/>
         </scene>
     </scenes>
 </document>

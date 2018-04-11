@@ -1,73 +1,57 @@
 //
-//  FilmCell.swift
+//  DetailView.swift
 //  SeckveniaTest
 //
-//  Created by Jake Walker on 10.04.2018.
+//  Created by Jake Walker on 11.04.2018.
 //  Copyright © 2018 Aleksandr Chegoshev. All rights reserved.
 //
 
 import UIKit
 
-class FilmCell: UITableViewCell {
-    
-    @IBOutlet weak var containerView: UIView!
-    
+class DetailView: UIView {
+
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var localizedNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var descriptionText: UITextView!
     
     private var localizedNameHeight: NSLayoutConstraint?
     private var nameHeight: NSLayoutConstraint?
-    
+    private var descriptionHeight: NSLayoutConstraint?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.clear
-        accessoryType = .disclosureIndicator
-        selectionStyle = .none
+        frame.size = CGSize(width: frame.width,
+                            height: frame.height)
     }
     
-    func changeContainerViewColor(isSelested: Bool) {
-        if isSelested {
-            containerView.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1)
-        } else {
-            containerView.backgroundColor = UIColor.white
-        }
+    func configView(with film: Film, and image: UIImage?) {
+        let localizedName = film.localizedName
+        let name = film.name + " (\(film.year))"
+        let description = film.descriptionText
+        let rating = film.rating
         
-    }
-    func setPoster(with data: Data?) {
-        guard let imageData = data else { return }
-        posterImage.image = UIImage(data: imageData)
-    }
-    
-    func configCell(from array: [Film], with indexPath: IndexPath) {
-        let localizedName = array[indexPath.row].localizedName
-        let name = array[indexPath.row].name
-        let rating = array[indexPath.row].rating
-        
-        config(localizedName: localizedName, name: name)
+        config(localizedName: localizedName, name: name, description: description)
         config(rating: rating)
+        
+        guard let poster = image else { return }
+        posterImage.image = poster
     }
     
-    private func config(localizedName: String, name: String) {
-        localizedNameHeight?.isActive = false
-        nameHeight?.isActive = false
-        localizedNameHeight?.constant = estimateFrame(for: localizedName, with: 15).height+4
-        nameHeight?.constant = estimateFrame(for: name, with: 12).height+4
+    private func config(localizedName: String, name: String, description: String) {
+        localizedNameHeight?.constant = estimateFrame(for: localizedName, with: 17).height+4
+        nameHeight?.constant = estimateFrame(for: name, with: 14).height+4
+        descriptionHeight?.constant = estimateFrame(for: description, with: 14).height+4
+
         localizedNameHeight?.isActive = true
         nameHeight?.isActive = true
+        descriptionHeight?.isActive = true
         
         localizedNameLabel.text = localizedName
         nameLabel.text = name
-    }
-    
-    private func config(rating: Double) {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 1
-        ratingLabel.text = formatter.string(from: NSNumber(value: rating))
-        
-        ratingLabel.textColor = color(for: rating)
+        descriptionText.text = description
     }
     
     private func estimateFrame(for text: String, with textSize: CGFloat) -> CGRect {
@@ -77,6 +61,15 @@ class FilmCell: UITableViewCell {
                                                    options: options,
                                                    attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: textSize)],
                                                    context: nil)
+    }
+    
+    private func config(rating: Double) {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 1
+        ratingLabel.text = formatter.string(from: NSNumber(value: rating))
+        
+        ratingLabel.textColor = color(for: rating)
     }
     
     private func color(for rating: Double) -> UIColor {
@@ -95,10 +88,10 @@ class FilmCell: UITableViewCell {
         }
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        localizedNameHeight?.isActive = false
-        nameHeight?.isActive = false
-        posterImage.image = nil
+    
+    //Need to fix
+    func estimateConentSize() -> CGSize {
+        return CGSize(width: bounds.width, height: descriptionText.frame.origin.y + estimateFrame(for: descriptionText.text, with: 14).height+4)
     }
+    
 }

@@ -71,8 +71,23 @@ class FilmsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FilmCell
-        cell.selectionStyle = .none
-        cell.changeContainerViewColor()
+        cell.changeContainerViewColor(isSelested: true)
+        performSegue(withIdentifier: "to_detail", sender: indexPath)
     }
+    
+    // MARK: - Navigation
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "to_detail" {
+            let detailViewController = segue.destination as! DetailViewController
+            let indexPath = sender as! IndexPath
+            let cell = tableView.cellForRow(at: indexPath) as!FilmCell
+            
+            detailViewController.cell = cell
+            detailViewController.film = rowArray[indexPath.section][indexPath.row]
+            detailViewController.poster = cell.posterImage.image
+        }
+        
+    }
+                                                                                                                                                     
 }

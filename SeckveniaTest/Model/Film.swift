@@ -16,7 +16,7 @@ class Film: NSObject {
     var year = 0
     var rating = 0.0
     var imageURL = ""
-    var descriptText = ""
+    var descriptionText = ""
     
     convenience init? (json: JSON) {
         guard
@@ -25,7 +25,7 @@ class Film: NSObject {
             let year = json["year"].int,
             let rating = json["rating"].double,
             let imageURL = json["image_url"].string,
-            let descriptText = json["description"].string
+            let descriptionText = json["description"].string
         else {return nil}
         
         self.init()
@@ -35,7 +35,7 @@ class Film: NSObject {
         self.year = year
         self.rating = rating
         self.imageURL = imageURL
-        self.descriptText = descriptText
+        self.descriptionText = descriptionText
         
     }
 }
