@@ -22,11 +22,24 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         setupNavBar()
         setupView()
+        addObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         cell.changeContainerViewColor(isSelested: false)
+        checkOrientation()
+    }
+    
+    private func checkOrientation() {
+        if UIDevice.current.orientation.isLandscape {
+            detailView.resizeDescritionTex()
+        }
+        scrollView.contentSize = detailView.estimateConentSize()
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: .UIDeviceOrientationDidChange, object: nil)
     }
     
     private func setupNavBar() {
@@ -34,14 +47,19 @@ class DetailViewController: UIViewController {
     }
 
     private func setupView() {
+        scrollView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
         detailView = Bundle.main.loadNibNamed("DetailView", owner: self, options: nil)?.first as! DetailView
         scrollView.addSubview(detailView)
         detailView.configView(with: film, and: poster)
-//        scrollView.contentSize = detailView.estimateConentSize()
-        scrollView.contentSize = detailView.frame.size
-        scrollView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
     }
-
-
+    
+    @objc func rotated() {
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            detailView.resizeDescritionTex()
+        } else if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+            detailView.resizeDescritionTex()
+        }
+        scrollView.contentSize = detailView.estimateConentSize()
+    }
 }
 

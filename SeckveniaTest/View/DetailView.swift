@@ -43,15 +43,23 @@ class DetailView: UIView {
     private func config(localizedName: String, name: String, description: String) {
         localizedNameHeight?.constant = estimateFrame(for: localizedName, with: 17).height+4
         nameHeight?.constant = estimateFrame(for: name, with: 14).height+4
-        descriptionHeight?.constant = estimateFrame(for: description, with: 14).height+4
-
         localizedNameHeight?.isActive = true
         nameHeight?.isActive = true
-        descriptionHeight?.isActive = true
         
         localizedNameLabel.text = localizedName
         nameLabel.text = name
         descriptionText.text = description
+        
+        resizeDescritionTex()
+    }
+    
+    func resizeDescritionTex() {
+        let fixWidth = descriptionText.frame.width
+        let newSize = descriptionText.sizeThatFits(CGSize(width: fixWidth, height: CGFloat.greatestFiniteMagnitude))
+        var newFrame = descriptionText.frame
+        newFrame.size = CGSize(width: CGFloat(fmaxf(Float(newSize.width), Float(fixWidth))), height: newSize.height)
+        descriptionText.frame = newFrame
+
     }
     
     private func estimateFrame(for text: String, with textSize: CGFloat) -> CGRect {
@@ -88,10 +96,7 @@ class DetailView: UIView {
         }
     }
     
-    /*
-    //Need to fix
     func estimateConentSize() -> CGSize {
-        return CGSize(width: bounds.width, height: descriptionText.frame.origin.y + estimateFrame(for: descriptionText.text, with: 14).height+4)
+        return CGSize(width: bounds.width, height: descriptionText.frame.origin.y + descriptionText.frame.height + 16)
     }
-    */
 }
