@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
     
     private func checkOrientation() {
         if UIDevice.current.orientation.isLandscape {
-            detailView.resizeDescritionTex()
+            detailView.resizeDescritionText()
         }
         scrollView.contentSize = detailView.estimateConentSize()
     }
@@ -47,7 +47,6 @@ class DetailViewController: UIViewController {
     }
 
     private func setupView() {
-        scrollView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
         detailView = Bundle.main.loadNibNamed("DetailView", owner: self, options: nil)?.first as! DetailView
         scrollView.addSubview(detailView)
         detailView.configView(with: film, and: poster)
@@ -55,9 +54,9 @@ class DetailViewController: UIViewController {
     
     @objc func rotated() {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-            detailView.resizeDescritionTex()
+            detailView.resizeDescritionText()
         } else if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            detailView.resizeDescritionTex()
+            detailView.resizeDescritionText()
         }
         scrollView.contentSize = detailView.estimateConentSize()
     }

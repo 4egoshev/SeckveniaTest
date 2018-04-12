@@ -17,7 +17,7 @@ class FilmsViewController: UITableViewController {
     let segueIdentifier = "to_detail"
     
     var sectionArray = [Int]()
-    var rowArray = [Array<Film>]()
+    var contentArray = [Array<Film>]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,17 +25,26 @@ class FilmsViewController: UITableViewController {
         setupNavBar()
         setupTableView()
     }
+
+    //MARK: - View
+    
+    private func setupNavBar() {
+        navigationController?.navigationBar.barTintColor = UIColor.orange
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,
+                                                                   NSAttributedStringKey.font: UIFont.systemFont(ofSize: 21, weight: .bold)]
+    }
+    
+    private func setupTableView() {
+        tableView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        tableView.register(UINib(nibName: "FilmCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
+    }
+    
+    //MARK: - Content
     
     private func downloadData() {
         downloadManager.downloadData {
             self.setupContent()
         }
-    }
-
-    private func setupNavBar() {
-        navigationController?.navigationBar.barTintColor = UIColor.orange
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,
-                                                                   NSAttributedStringKey.font: UIFont.systemFont(ofSize: 21, weight: .bold)]
     }
     
     private func setupContent() {
@@ -66,36 +75,31 @@ class FilmsViewController: UITableViewController {
         for year in yearArray {
             var tempArray = films.filter({ $0.year == year })
             tempArray.sort(by: { $0.rating > $1.rating })
-            rowArray.append(tempArray)
+            contentArray.append(tempArray)
         }
     }
-    
-    private func setupTableView() {
-        tableView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        tableView.register(UINib(nibName: "FilmCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
-    }
 
-    // MARK: - UITableViewDataSource
+    // MARK: - TableView DataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionArray.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowArray[section].count
+        return contentArray[section].count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FilmCell
-        let array = rowArray[indexPath.section]
-        downloadManager.dowloadImage(from: array[indexPath.row].imageURL) { (data) in
+        let rowArray = contentArray[indexPath.section]
+        downloadManager.dowloadImage(from: rowArray[indexPath.row].imageURL) { (data) in
             cell.setPoster(with: data)
         }
-        cell.configCell(from: array, with: indexPath)
+        cell.configCell(from: rowArray, with: indexPath)
         return cell
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - TableView Delegate
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
@@ -122,7 +126,7 @@ class FilmsViewController: UITableViewController {
             let cell = tableView.cellForRow(at: indexPath) as!FilmCell
             
             detailViewController.cell = cell
-            detailViewController.film = rowArray[indexPath.section][indexPath.row]
+            detailViewController.film = contentArray[indexPath.section][indexPath.row]
             detailViewController.poster = cell.posterImage.image
         }
         
