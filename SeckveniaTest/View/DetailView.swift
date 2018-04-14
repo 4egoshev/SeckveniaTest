@@ -25,7 +25,7 @@ class DetailView: UIView {
         bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
-    func configView(with film: Film, and image: UIImage?) {
+    func configView(with film: Film) {
         localizedNameLabel.text = film.localizedName
         nameLabel.text = film.name + " (\(film.year))"
         descriptionText.text = film.descriptionText
@@ -36,7 +36,8 @@ class DetailView: UIView {
         let rating = film.rating
         config(rating: rating, for: ratingLabel)
         
-        configPoster(from: image)
+        posterImage.af_setImage(withURL: URL(string: film.imageURL)!)
+        configPoster()
     }
     
     func resizeDescriptionText() {
@@ -44,10 +45,7 @@ class DetailView: UIView {
         estimateFrame()
     }
     
-    private func configPoster(from image: UIImage?) {
-        guard let poster = image else { return }
-        posterImage.image = poster
-        
+    private func configPoster() {
         posterImage.layer.shadowColor = UIColor.black.cgColor
         posterImage.layer.shadowOffset = CGSize(width: 1, height: 2)
         posterImage.layer.shadowOpacity = 0.4

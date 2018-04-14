@@ -16,7 +16,6 @@ class DetailViewController: UIViewController {
     var detailView = DetailView()
 
     var film = Film()
-    var poster: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +41,7 @@ class DetailViewController: UIViewController {
     private func setupView() {
         detailView = Bundle.main.loadNibNamed("DetailView", owner: self, options: nil)?.first as! DetailView
         detailView.add(to: scrollView)
-        detailView.configView(with: film, and: poster)
+        detailView.configView(with: film)
     }
     
     @objc func rotated() {

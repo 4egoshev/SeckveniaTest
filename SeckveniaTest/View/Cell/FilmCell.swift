@@ -45,6 +45,8 @@ class FilmCell: UITableViewCell {
         
         let rating = array[indexPath.row].rating
         config(rating: rating, for: ratingLabel)
+        
+        posterImage.af_setImage(withURL: URL(string: array[indexPath.row].imageURL)!)
     }
     
     override func prepareForReuse() {

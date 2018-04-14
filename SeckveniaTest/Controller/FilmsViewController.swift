@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import AlamofireImage
 
 class FilmsViewController: UITableViewController {
     
@@ -92,9 +93,6 @@ class FilmsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FilmCell
         let rowArray = contentArray[indexPath.section]
-        downloadManager.dowloadImage(from: rowArray[indexPath.row].imageURL) { (data) in
-            cell.setPoster(with: data)
-        }
         cell.configCell(from: rowArray, with: indexPath)
         return cell
     }
@@ -127,7 +125,6 @@ class FilmsViewController: UITableViewController {
             
             detailViewController.cell = cell
             detailViewController.film = contentArray[indexPath.section][indexPath.row]
-            detailViewController.poster = cell.posterImage.image
         }
         
     }

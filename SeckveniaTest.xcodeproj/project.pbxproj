@@ -50,6 +50,7 @@
 		23879219207BC179000B0E26 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		23F5B9A2207F79640075FD23 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		23F5B9A6207F7C0B0075FD23 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		23F86E83208224AA00340A50 /* AlamofireImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AlamofireImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23FDAD83207CC11D00F72140 /* FilmCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilmCell.xib; sourceTree = "<group>"; };
 		23FDAD85207CC2DA00F72140 /* FilmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCell.swift; sourceTree = "<group>"; };
 		B21D8DEDED4A4BC1ABFFFA40 /* Pods_SeckveniaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeckveniaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +181,7 @@
 		B53537497AE4CC3FFF8E24B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23F86E83208224AA00340A50 /* AlamofireImage.framework */,
 				2353E80F207DD9100034205D /* RealmSwift.framework */,
 				2353E80D207DD8EB0034205D /* RealmSwift.framework */,
 				2385AB35207D44370003E37C /* SwiftyJSON.framework */,
@@ -273,6 +275,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SeckveniaTest/Pods-SeckveniaTest-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -280,6 +283,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
