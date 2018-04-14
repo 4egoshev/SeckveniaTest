@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  UIColor+Gradient.swift
 //  SeckveniaTest
 //
 //  Created by Jake Walker on 12.04.2018.
@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     
-    class func ratingColor(for rating: Double) -> UIColor {
+    class func gradientColor(for rating: Double) -> UIColor {
         let maxCount = 10
         let value = CGFloat(rating) / CGFloat(maxCount)
         if value > 0.6 {

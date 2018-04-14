@@ -12,8 +12,6 @@ import AlamofireImage
 
 class FilmsViewController: UITableViewController {
     
-    let downloadManager = DownloadManager.sharedInstance
-    
     let cellIdentifier = "film_cell"
     let segueIdentifier = "to_detail"
     
@@ -25,6 +23,15 @@ class FilmsViewController: UITableViewController {
         downloadData()
         setupNavBar()
         setupTableView()
+    }
+    
+    //MARK: - Content
+    
+    private func downloadData() {
+        DownloadManager.sharedInstance.downloadFilms {
+            self.sectionArray = DataBaseManager.sharedInstance.getFilteredArraysForTop().yearArray
+            self.contentArray = DataBaseManager.sharedInstance.getFilteredArraysForTop().filmArray
+        }
     }
 
     //MARK: - View
@@ -38,46 +45,6 @@ class FilmsViewController: UITableViewController {
     private func setupTableView() {
         tableView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         tableView.register(UINib(nibName: "FilmCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
-    }
-    
-    //MARK: - Content
-    
-    private func downloadData() {
-        downloadManager.downloadData {
-            self.setupContent()
-        }
-    }
-    
-    private func setupContent() {
-        let filmArray = DownloadManager.sharedInstance.getData()
-        filterArrays(from: filmArray)
-    }
-    
-    private func filterArrays(from films: [Film]) {
-        var years = [Int]()
-        for film in films {
-            years.append(film.year)
-        }
-        createYaerArray(from: years)
-        creteFilmArray(from: films, and: sectionArray)
-        tableView.reloadData()
-    }
-    
-    private func createYaerArray(from yaers: [Int]) {
-        for year in yaers {
-            if !sectionArray.contains(year) {
-                sectionArray.append(year)
-            }
-        }
-        sectionArray.sort()
-    }
-    
-    private func creteFilmArray(from films: [Film], and yearArray: [Int]) {
-        for year in yearArray {
-            var rowArray = films.filter({ $0.year == year })
-            rowArray.sort(by: { $0.rating > $1.rating })
-            contentArray.append(rowArray)
-        }
     }
 
     // MARK: - TableView DataSource
@@ -126,7 +93,6 @@ class FilmsViewController: UITableViewController {
             detailViewController.cell = cell
             detailViewController.film = contentArray[indexPath.section][indexPath.row]
         }
-        
     }
                                                                                                                                                      
 }

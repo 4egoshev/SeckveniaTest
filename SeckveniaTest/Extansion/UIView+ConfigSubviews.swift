@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  UIView+ConfigSubviews.swift
 //  SeckveniaTest
 //
 //  Created by Jake Walker on 12.04.2018.
@@ -24,6 +24,6 @@ extension UIView {
         formatter.maximumFractionDigits = 1
         label.text = formatter.string(from: NSNumber(value: rating))!
         
-        label.textColor = UIColor.ratingColor(for: rating)
+        label.textColor = UIColor.gradientColor(for: rating)
     }
 }
