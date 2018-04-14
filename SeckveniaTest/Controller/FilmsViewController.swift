@@ -15,6 +15,8 @@ class FilmsViewController: UITableViewController {
     let cellIdentifier = "film_cell"
     let segueIdentifier = "to_detail"
     
+    var selectedCell = FilmCell()
+    
     var sectionArray = [Int]()
     var contentArray = [Array<Film>]()
 
@@ -23,6 +25,11 @@ class FilmsViewController: UITableViewController {
         downloadData()
         setupNavBar()
         setupTableView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        selectedCell.changeContainerViewColor(isSelected: false)
     }
     
     //MARK: - Content
@@ -77,8 +84,8 @@ class FilmsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! FilmCell
-        cell.changeContainerViewColor(isSelected: true)
+        selectedCell = tableView.cellForRow(at: indexPath) as! FilmCell
+        selectedCell.changeContainerViewColor(isSelected: true)
         performSegue(withIdentifier: segueIdentifier, sender: indexPath)
     }
     
@@ -88,9 +95,6 @@ class FilmsViewController: UITableViewController {
         if segue.identifier == segueIdentifier {
             let detailViewController = segue.destination as! DetailViewController
             let indexPath = sender as! IndexPath
-            let cell = tableView.cellForRow(at: indexPath) as! FilmCell
-            
-            detailViewController.cell = cell
             detailViewController.film = contentArray[indexPath.section][indexPath.row]
         }
     }

@@ -11,8 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    var cell = FilmCell()
+
     var detailView = DetailView()
 
     var film = Film()
@@ -26,7 +25,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        cell.changeContainerViewColor(isSelected: false)
         detailView.resizeDescriptionText()
     }
     
