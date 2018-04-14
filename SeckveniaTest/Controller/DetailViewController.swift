@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     
     var cell = FilmCell()
     var detailView = DetailView()
-    
+
     var film = Film()
     var poster: UIImage?
 
@@ -27,15 +27,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        cell.changeContainerViewColor(isSelested: false)
-        checkOrientation()
-    }
-    
-    private func checkOrientation() {
-        if UIDevice.current.orientation.isLandscape {
-            detailView.resizeDescritionText()
-        }
-        scrollView.contentSize = detailView.estimateConentSize()
+        cell.changeContainerViewColor(isSelected: false)
+        detailView.resizeDescriptionText()
     }
     
     private func addObserver() {
@@ -48,17 +41,16 @@ class DetailViewController: UIViewController {
 
     private func setupView() {
         detailView = Bundle.main.loadNibNamed("DetailView", owner: self, options: nil)?.first as! DetailView
-        scrollView.addSubview(detailView)
+        detailView.add(to: scrollView)
         detailView.configView(with: film, and: poster)
     }
     
     @objc func rotated() {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-            detailView.resizeDescritionText()
+            detailView.resizeDescriptionText()
         } else if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            detailView.resizeDescritionText()
+            detailView.resizeDescriptionText()
         }
-        scrollView.contentSize = detailView.estimateConentSize()
     }
 }
 

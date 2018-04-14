@@ -24,8 +24,8 @@ class FilmCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func changeContainerViewColor(isSelested: Bool) {
-        if isSelested {
+    func changeContainerViewColor(isSelected: Bool) {
+        if isSelected {
             containerView.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1)
         } else {
             containerView.backgroundColor = UIColor.white

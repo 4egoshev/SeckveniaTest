@@ -15,12 +15,14 @@ class DetailView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var descriptionText: UITextView!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        backgroundColor = UIColor.clear
-        frame.size = CGSize(width: frame.width,
-                            height: frame.height)
+    
+    func add(to view:UIView) {
+        view.addSubview(self)
+        
+        leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     func configView(with film: Film, and image: UIImage?) {
@@ -34,14 +36,15 @@ class DetailView: UIView {
         let rating = film.rating
         config(rating: rating, for: ratingLabel)
         
-        congigPoster(from: image)
+        configPoster(from: image)
     }
     
-    func resizeDescritionText() {
+    func resizeDescriptionText() {
         resize(view: descriptionText)
+        estimateFrame()
     }
     
-    private func congigPoster(from image: UIImage?) {
+    private func configPoster(from image: UIImage?) {
         guard let poster = image else { return }
         posterImage.image = poster
         
@@ -50,7 +53,8 @@ class DetailView: UIView {
         posterImage.layer.shadowOpacity = 0.4
     }
     
-    func estimateConentSize() -> CGSize {
-        return CGSize(width: bounds.width, height: descriptionText.frame.origin.y + descriptionText.frame.height + 16)
+    private func estimateFrame() {
+        frame.size = CGSize(width: bounds.width,
+                            height: descriptionText.frame.origin.y + descriptionText.frame.height + 16)
     }
 }

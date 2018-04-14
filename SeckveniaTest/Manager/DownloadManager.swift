@@ -15,10 +15,10 @@ class DownloadManager {
     
     static let sharedInstance = DownloadManager()
 
-    typealias DowloadImageComplition = (_ data: Data?) -> Void
-    typealias DowloadDataComplition = () -> Void
+    typealias DownloadImageComplition = (_ data: Data?) -> Void
+    typealias DownloadDataComplition = () -> Void
     
-    func dowloadImage(from url: String, complition: @escaping DowloadImageComplition) {
+    func dowloadImage(from url: String, complition: @escaping DownloadImageComplition) {
         
         Alamofire.request(url).responseData { response in
             guard let data = response.result.value else {
@@ -29,7 +29,7 @@ class DownloadManager {
         }
     }
     
-    func downloadData(complition: @escaping DowloadDataComplition) {
+    func downloadData(complition: @escaping DownloadDataComplition) {
         //Имитация запроса на сервер и сохранение в БД
         parseJson()
         complition()

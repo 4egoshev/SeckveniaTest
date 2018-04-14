@@ -73,9 +73,9 @@ class FilmsViewController: UITableViewController {
     
     private func creteFilmArray(from films: [Film], and yearArray: [Int]) {
         for year in yearArray {
-            var tempArray = films.filter({ $0.year == year })
-            tempArray.sort(by: { $0.rating > $1.rating })
-            contentArray.append(tempArray)
+            var rowArray = films.filter({ $0.year == year })
+            rowArray.sort(by: { $0.rating > $1.rating })
+            contentArray.append(rowArray)
         }
     }
 
@@ -113,7 +113,7 @@ class FilmsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FilmCell
-        cell.changeContainerViewColor(isSelested: true)
+        cell.changeContainerViewColor(isSelected: true)
         performSegue(withIdentifier: segueIdentifier, sender: indexPath)
     }
     
@@ -123,7 +123,7 @@ class FilmsViewController: UITableViewController {
         if segue.identifier == segueIdentifier {
             let detailViewController = segue.destination as! DetailViewController
             let indexPath = sender as! IndexPath
-            let cell = tableView.cellForRow(at: indexPath) as!FilmCell
+            let cell = tableView.cellForRow(at: indexPath) as! FilmCell
             
             detailViewController.cell = cell
             detailViewController.film = contentArray[indexPath.section][indexPath.row]

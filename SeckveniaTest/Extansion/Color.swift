@@ -11,8 +11,8 @@ import UIKit
 extension UIColor {
     
     class func ratingColor(for rating: Double) -> UIColor {
-        let count = 10
-        let value = CGFloat(rating) / CGFloat(count)
+        let maxCount = 10
+        let value = CGFloat(rating) / CGFloat(maxCount)
         if value > 0.6 {
             //green
             let greenValue:CGFloat = 0.6
